@@ -1,0 +1,85 @@
+﻿@model DocMeetingPro.Models.Meeting
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+    <partial name='~/Views/Layouts/Partials/_Menu.cshtml' />
+    <partial name="~/Views/Layouts/Partials/_Navbar.cshtml" />
+
+</div>
+
+@*<h1>Create</h1>*@
+<h4 style="margin-top:80px">Toplantı Ekle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Toplantı Adı</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label">Başlangıç Tarihi</label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div>
+                @if (ViewBag.mt != null && ViewBag.mtCheck == true)
+                {
+                    <span style="color:red">Bu tarihte daha önce toplantı eklenmiştir</span>
+                }
+                <br />
+                <br />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EndTime" class="control-label">Bitiş Tarihi</label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label asp-for="Saloon" class="control-label">Salon</label>
+                @*<input asp-for="Saloon" class="form-control" />*@
+                @*<span asp-validation-for="SaloonId" class="text-danger"></span>*@
+                <select name="SaloonId" class="form-control">
+                    @foreach (var item in (ViewBag.v1 as List<SelectListItem>))
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+
+            </div>
+
+            @*@Html.DropDownList("Saloon", null, "bir salon seçiniz", new { @class = "form-control" })*@
+
+            <br />
+            @*<div>
+                    @if (ViewBag.mt != null && ViewBag.mt != "")
+                    {
+                        <span style="color:red">Bu tarihte bir toplantı daha önce eklenmiştir</span>
+                    }
+                    <br />
+                    <br />
+                </div>*@
+
+
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>

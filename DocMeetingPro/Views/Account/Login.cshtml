@@ -1,0 +1,45 @@
+﻿    @model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="row">
+    <div class="col-4 offset-4">
+        @*<h1 class="display-4 border-bottom text-center pb-2">@ViewData["title"]</h1>*@
+        <h3 class="display-4 border-bottom text-center pb-2">Oturum Aç</h3>
+        @*<h2>Oturum Aç</h2>*@
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+            <div class="form-group mb-3">
+                @* label etiketleri arasında verilen değer loginviewmodelde belirtildi*@
+                <label asp-for="Username" class="form-label">Kullanıcı Adı</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label">Şifre</label>
+                @* type password ile ilgili düzenleme loginviewmodel üzerinde yapıldı *@
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group d-grid mb-3">
+                <button type="submit" class="btn btn-primary d-block"><i class="fa-solid fa-right-to-bracket me-2"></i>Giriş Yap</button>
+            </div>
+        </form>
+
+        <a class="menu-link" href="@Url.Action("Register", "Account" )">
+
+            @*<a class="menu-link" href="../Saloons">*@
+
+
+            <span class="menu-title">Kayıt Ol</span>
+        </a>
+    </div>
+</div>

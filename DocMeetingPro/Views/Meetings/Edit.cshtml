@@ -1,0 +1,72 @@
+﻿@model DocMeetingPro.Models.Meeting
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+    <partial name='~/Views/Layouts/Partials/_Menu.cshtml' />
+    <partial name="~/Views/Layouts/Partials/_Navbar.cshtml" />
+
+</div>
+
+@*<h1>Edit</h1>*@
+
+<h4 style="margin-top:80px">Düzenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Toplantı Adı</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label">Ekleme Tarihi</label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EndTime" class="control-label">Bitiş Tarihi</label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Salon</label>
+
+                <select name="SaloonId" class="form-control">
+                    @foreach (var item in (ViewBag.v1 as List<SelectListItem>))
+                    {
+                        if (item.Value == Model.SaloonId.ToString())
+                        {
+                            <option selected="selected" value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
